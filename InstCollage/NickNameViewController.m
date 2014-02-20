@@ -41,6 +41,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     nickNameField.text = nil;
+    self.downloadImagesButton.hidden = YES;
     usersID = nil;
 }
 
