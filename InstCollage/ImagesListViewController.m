@@ -26,13 +26,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Attention!" message:@"For correct work choose number of images like 9, 12, 15 & 18" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     self.tableView.allowsMultipleSelection = YES;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Attention!" message:@"For correct work choose number of images like 9, 12, 15 & 18" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles: nil];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         [self getAllImages];
         [av show];
-        [self.tableView reloadData];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     });
 }
